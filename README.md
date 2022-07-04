@@ -4,13 +4,23 @@
 
 Long Term Support release A LTS (Long-Term Support) release is chosen every 12 weeks from the stream of regular releases as the stable release for that time period. It can be installed from the debian-stable apt repository.
 ```
-curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \
-  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
-  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
-  /etc/apt/sources.list.d/jenkins.list > /dev/null
-sudo apt-get update
-sudo apt-get install jenkins
+Step 1: Install Java
+$ sudo apt update
+$ sudo apt install openjdk-8-jdk
+Step 2: Add Jenkins Repository
+$ wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key
+| sudo apt-key add –
+Step 3: Add Jenkins repo to the system
+$ sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable
+binary/ > /etc/apt/sources.list.d/jenkins.list’
+Step 4: Install Jenkins
+$ sudo apt update
+$ sudo apt install Jenkins
+Step 5: Verify installation
+$ systemctl status Jenkins
+Step 6: Once Jenkins is up and running, access it from the
+link:
+http://localhost:8080
 ```
 
 ### The package installation will:
