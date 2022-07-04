@@ -60,21 +60,28 @@ configure -> Pipeline flow -> Select Initial job -> Job1 -> ok
 
 **Step 4:** Run the Build Pipeline
 
-### Pipeline Concepts
+# Pipeline Concepts
 The below fundamentals are common to both, scripted and declarative pipeline:
 
 1. **Pipeline:** A user-defined block which contains all the stages. It is a key part of declarative pipeline syntax.
 2. **Node:** A node is a machine that executes an entire workflow. It is a key part of the scripted pipeline syntax.
 3. **Agent:** instructs Jenkins to allocate an executor for the builds. It is defined for an entire pipeline or a specific stage.
-It has the following parameters:
 
-Any: Runs pipeline/ stage on any available agent
-None: applied at the root of the pipeline, it indicates that there is no global agent for the entire pipeline & each stage must specify its own agent
-Label: Executes the pipeline/stage on the labelled agent.
-Docker: Uses docker container as an execution environment for the pipeline or a specific stage.
-Stages: It contains all the work; each stage performs a specific task.
-Steps: steps are carried out in sequence to execute a stage
-Jenkins Pipeline syntax example
+### It has the following parameters:
+
+- **_Any:_** Runs pipeline/ stage on any available agent.
+
+- **_None:_** applied at the root of the pipeline, it indicates that there is no global agent for the entire pipeline & each stage must specify its own agent.
+
+- **_Label:_** Executes the pipeline/stage on the labelled agent.
+
+- **_Docker:_** Uses docker container as an execution environment for the pipeline or a specific stage.
+
+1. **Stages:** It contains all the work; each stage performs a specific task.
+2. **Steps:** steps are carried out in sequence to execute a stage
+
+### Jenkins Pipeline syntax example
+```
 node {
      stage(‘SCM checkout’) {
           //Checkout from your SCM(Source Control Management)
@@ -94,11 +101,14 @@ node {
           //Solve dependency issues
      }
 }
-Create your first Jenkins Pipeline
+```
+
+### Create your first Jenkins Pipeline
+
 After installing Jenkins, building jobs using the Build pipeline and briefly discussing pipeline concepts, let’s see how to create a Jenkins pipeline.
 
 Follow the below steps to create both, a scripted pipeline and a declarative pipeline:
-
+```
 Step 1: Log into Jenkins and select ‘New Item from the Dashboard'
 
 Step 2: Next, enter a name for your pipeline and select ‘Pipeline project’. Click ‘ok’ to proceed
@@ -110,14 +120,19 @@ Step 4a: If you want a Scripted pipeline, then choose ‘pipeline script’ and 
 Step 4b: If you want a Declarative Pipeline, select ‘Pipeline script from SCM’ and choose your SCM and enter your repository URL
 
 Step 5: Within the Script path is the name of the Jenkinsfile that is going to be accessed from your SCM to run. Finally click on ‘apply’ and ‘save’
-Jenkins Tips and Tricks
-Start, stop and restart Jenkins
+```
+# Jenkins Tips and Tricks
+
+### Start, stop and restart Jenkins
 Follow the below command to start, stop and restart Jenkins through the CLI.
 
+```
 $ sudo service jenkins restart
 $ sudo service jenkins stop
 $ sudo service jenkins start
-Deploy a custom build of a core plugin
+```
+### Deploy a custom build of a core plugin
+```
 Step 1: Stop Jenkins.
 
 Step 2: Copy the custom HPI to $Jenkins_Home/plugins.
@@ -127,9 +142,12 @@ Step 3: Delete the previously expanded plugin directory.
 Step 4: Make an empty file called <plugin>.hpi.pinned.
 
 Step 5: Start Jenkins.
-Schedule a build periodically
+```
+### Schedule a build periodically
+
 Jenkins uses Cron expressions to schedule a job. Each line consists of 5 fields separated by TAB or whitespace:
 
+```
 Syntax: (Minute Hour DOM Month DOW)
 
 MINUTE: Minutes in one hour (0-59)
@@ -143,12 +161,15 @@ MONTH: Month in a year (1-12)
 DAYWEEK: Day of the week (0-7) where 0 and 7 are sunday
 
 Example: H/2 * * * * (schedule your build for every 2 minutes)
+```
+
 Try this example:
-
+```
 H/2 * * * * (schedules your build for every 2 minutes)
-Snippet Generator
+```
+### Snippet Generator
 A tool that lets users generate code for individual steps in a scripted pipeline. Let’s look at an example:
-
+```
 Step 1: Create a pipeline job > configure
 
 Step 2: Select pipeline script from pipeline definition
@@ -160,8 +181,4 @@ Step 4: Step > select Git > enter repo URL
 Step 5: Scroll down > Generate pipeline script
 
 Step 6: Copy the script into your pipeline script UI
-
-Below is an image of the Snippet Generator. You can select from a variety of steps and generate a code for each step.
-
-
-Below is an image of the Scripted pipeline UI with the code generated from snippet generator
+```
