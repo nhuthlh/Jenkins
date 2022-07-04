@@ -103,6 +103,46 @@ node {
 }
 ```
 
+```
+pipeline { 
+    agent any 
+    options {
+        skipStagesAfterUnstable()
+    }
+    stages {
+        stage('Build') { 
+            steps { 
+                sh 'make' 
+            }
+        }
+        stage('Test'){
+            steps {
+                sh 'make check'
+                junit 'reports/**/*.xml' 
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'make publish'
+            }
+        }
+    }
+}
+```
+_pipeline_ is Declarative Pipeline-specific syntax that defines a "block" containing all content and instructions for executing the entire Pipeline.
+
+_agent_ is Declarative Pipeline-specific syntax that instructs Jenkins to allocate an executor (on a node) and workspace for the entire Pipeline.
+
+_stage_ is a syntax block that describes a stage of this Pipeline. Read more about stage blocks in Declarative Pipeline syntax on the Pipeline syntax page. As mentioned above, stage blocks are optional in Scripted Pipeline syntax.
+
+_steps_ is Declarative Pipeline-specific syntax that describes the steps to be run in this stage.
+
+_sh_ is a Pipeline step (provided by the Pipeline: Nodes and Processes plugin) that executes the given shell command.
+
+_junit_ is another Pipeline step (provided by the JUnit plugin) for aggregating test reports.
+
+_sh_ is a Pipeline step (provided by the Pipeline: Nodes and Processes plugin) that executes the given shell command.
+
 ### Create your first Jenkins Pipeline
 
 After installing Jenkins, building jobs using the Build pipeline and briefly discussing pipeline concepts, let’s see how to create a Jenkins pipeline.
