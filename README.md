@@ -1,6 +1,6 @@
 # Jenkins
 
-## Installation Ubuntu
+## Installation on Ubuntu
 
 Long Term Support release A LTS (Long-Term Support) release is chosen every 12 weeks from the stream of regular releases as the stable release for that time period. It can be installed from the debian-stable apt repository.
 ```
@@ -41,7 +41,7 @@ http://localhost:8080
       Environment="JENKINS_PORT=8081"
 ```
 Here, "8081" was chosen but you can put another port available.
-## Installation Docker
+## Installation on Docker
 ```
 docker network create jenkins
 
